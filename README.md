@@ -11,7 +11,7 @@ It is deliberately **not** a motor, pyrotechnics, or recovery-deployment control
 The project is in its early engineering and hardware-validation phase.
 
 - the repository is structured around separate rocket, ground, and analysis components;
-- the first `BME280 + ESP32 WROOM` bench test is included under `tests/`;
+- an isolated `BME280 + ESP32 WROOM` bench test has compiled successfully during local hardware validation;
 - the final ESP32-C3 pin map, radio configuration, and end-to-end flight firmware are still being validated.
 
 That status is intentional: the repository documents the route from verified hardware tests to a reliable integrated system, rather than presenting unfinished modules as a completed flight computer.
@@ -61,20 +61,9 @@ data/              Local flight logs (kept out of source control)
 
 ## First hardware check: BME280
 
-The first reproducible test targets a BME280 connected to an ESP32 WROOM over I2C. It prints temperature, pressure, and humidity to the serial monitor.
+The first bench validation targets a BME280 connected to an ESP32 WROOM over I2C. Its PlatformIO build has completed successfully; the test source and detailed wiring notes are still being integrated with the active hardware documentation before publication.
 
-```bash
-cd tests/bme280_wroom
-python3 -m platformio run -t upload
-python3 -m platformio device monitor
-```
-
-The current wiring reference is:
-
-- `3V3` → `VIN` / `VCC`
-- `GND` → `GND`
-- `GPIO21` → `SDA`
-- `GPIO22` → `SCL`
+The next public milestone is to add that isolated test, its serial output, and a wiring photo to the repository.
 
 ## Engineering roadmap
 
